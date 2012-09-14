@@ -35,12 +35,21 @@ import javax.swing.JMenuItem;
 public class DemoManager {
 
     // available demos classes
-    final static String classNames[] = { "simbad.demo.BaseDemo","simbad.demo.BumpersDemo",
-            "simbad.demo.SingleAvoiderDemo", "simbad.demo.AvoidersDemo",
-            "simbad.demo.ImagerDemo", "simbad.demo.LightSearchDemo",
-            "simbad.demo.SimplestDemo", "simbad.demo.BlinkingLampDemo",
-            "simbad.demo.DifferentialKinematicDemo","simbad.demo.KheperaDemo","simbad.demo.PickCherriesDemo",
-            "simbad.demo.PushBallsDemo"};
+    final static String classNames[] = {
+            "simbad.agents.SingleAvoider",
+            "simbad.demo.BaseDemo",
+            "simbad.demo.BumpersDemo",
+            "simbad.demo.SingleAvoiderDemo",
+            "simbad.demo.AvoidersDemo",
+            "simbad.demo.ImagerDemo",
+            "simbad.demo.LightSearchDemo",
+            "simbad.demo.SimplestDemo",
+            "simbad.demo.BlinkingLampDemo",
+            "simbad.demo.DifferentialKinematicDemo",
+            "simbad.demo.KheperaDemo",
+            "simbad.demo.PickCherriesDemo",
+            "simbad.demo.PushBallsDemo"
+    };
 
     /** Creates a menu corresponding to the demo set. */
     public final static JMenu createMenu(ActionListener actionListener) {
