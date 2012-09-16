@@ -3,9 +3,12 @@ package simbad.agents;
 import simbad.demo.Demo;
 import simbad.sim.*;
 
+import javax.vecmath.Color3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
+import java.awt.*;
 
+@SuppressWarnings("unused")
 public class SingleAvoider extends Demo {
     public class Robot extends Agent {
 
@@ -15,15 +18,19 @@ public class SingleAvoider extends Demo {
             super(position, name);
             // Add sensors
             bumpers = RobotFactory.addBumperBeltSensor(this);
-            sonars = RobotFactory.addSonarBeltSensor(this,24);
+            sonars = RobotFactory.addSonarBeltSensor(this, 24);
         }
 
-        /** Initialize Agent's Behavior */
+        /**
+         * Initialize Agent's Behavior
+         */
         public void initBehavior() {
             // nothing particular in this case
         }
 
-        /** Perform one step of Agent's Behavior */
+        /**
+         * Perform one step of Agent's Behavior
+         */
         public void performBehavior() {
 
             if (bumpers.oneHasHit()) {
@@ -58,6 +65,36 @@ public class SingleAvoider extends Demo {
         }
     }
 
+    public class DynamicEnvironmentElement extends Agent {
+
+        RangeSensorBelt bumpers;
+
+        /**
+         * Constructs an Agent.
+         *
+         * @param pos  start position in 3D world.
+         * @param name name of the agent.
+         */
+        public DynamicEnvironmentElement(Vector3d pos, String name) {
+            super(pos, name);
+            bumpers = RobotFactory.addBumperBeltSensor(this);
+
+        }
+
+        @Override
+        public void initBehavior() {
+            setTranslationalVelocity(1);
+            setColor(new Color3f(Color.blue));
+        }
+
+        @Override
+        public void performBehavior() {
+            if (bumpers.oneHasHit()) {
+                resetDevices();
+            }
+        }
+    }
+
     public SingleAvoider() {
         Wall w1 = new Wall(new Vector3d(10, 0, 0), 20, 1, this);
         w1.rotate90(1);
@@ -73,6 +110,9 @@ public class SingleAvoider extends Demo {
         add(b1);
         Arch a1 = new Arch(new Vector3d(3, 0, -3), this);
         add(a1);
+        add(new DynamicEnvironmentElement(new Vector3d(2, 0, 3), "cherry"));
+        add(new DynamicEnvironmentElement(new Vector3d(2, 0, 0), "cherry"));
+        add(new DynamicEnvironmentElement(new Vector3d(2, 0, 8), "cherry"));
         add(new Robot(new Vector3d(0, 0, 0), "avoider"));
 
     }
