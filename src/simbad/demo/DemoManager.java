@@ -36,7 +36,7 @@ public class DemoManager {
 
     // available demos classes
     final static String classNames[] = {
-            "agents.SingleAvoider",
+            "agents.DynamicEnvironmentSimulation",
             "simbad.demo.BaseDemo",
             "simbad.demo.BumpersDemo",
             "simbad.demo.SingleAvoiderDemo",

@@ -8,6 +8,6 @@ public class Main {
         // request antialising
         System.setProperty("j3d.implicitAntialiasing", "true");
         // create Simbad instance with given environment
-        new Simbad(new SingleAvoider(), false);
+        new Simbad(new DynamicEnvironmentSimulation(), false);
     }
 } 

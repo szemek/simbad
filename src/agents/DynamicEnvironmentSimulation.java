@@ -8,8 +8,7 @@ import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 import java.awt.*;
 
-@SuppressWarnings("unused")
-public class SingleAvoider extends Demo {
+public class DynamicEnvironmentSimulation extends Demo {
     public class Robot extends Agent {
 
         RangeSensorBelt sonars, bumpers;
@@ -90,12 +89,13 @@ public class SingleAvoider extends Demo {
         @Override
         public void performBehavior() {
             if (bumpers.oneHasHit()) {
+                rotateY(Math.PI);
                 resetDevices();
             }
         }
     }
 
-    public SingleAvoider() {
+    public DynamicEnvironmentSimulation() {
         Wall w1 = new Wall(new Vector3d(10, 0, 0), 20, 1, this);
         w1.rotate90(1);
         add(w1);
