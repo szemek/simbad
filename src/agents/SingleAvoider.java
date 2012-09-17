@@ -1,4 +1,4 @@
-package simbad.agents;
+package agents;
 
 import simbad.demo.Demo;
 import simbad.sim.*;
