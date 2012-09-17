@@ -1,100 +1,16 @@
 package agents;
 
+import agents.robots.DynamicEnvironmentElement;
+import agents.robots.DynamicEnvoronmentRobot;
 import simbad.demo.Demo;
-import simbad.sim.*;
+import simbad.sim.Arch;
+import simbad.sim.Box;
+import simbad.sim.Wall;
 
-import javax.vecmath.Color3f;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
-import java.awt.*;
 
 public class DynamicEnvironmentSimulation extends Demo {
-    public class Robot extends Agent {
-
-        RangeSensorBelt sonars, bumpers;
-
-        public Robot(Vector3d position, String name) {
-            super(position, name);
-            // Add sensors
-            bumpers = RobotFactory.addBumperBeltSensor(this);
-            sonars = RobotFactory.addSonarBeltSensor(this, 24);
-        }
-
-        /**
-         * Initialize Agent's Behavior
-         */
-        public void initBehavior() {
-            // nothing particular in this case
-        }
-
-        /**
-         * Perform one step of Agent's Behavior
-         */
-        public void performBehavior() {
-
-            if (bumpers.oneHasHit()) {
-                setTranslationalVelocity(-0.1);
-                setRotationalVelocity(0.1 * Math.random());
-
-            } else {
-                // Front left obstacle ?
-                if (sonars.hasHit(0) && (sonars.hasHit(1))) {
-                    setRotationalVelocity(-Math.PI / 4);
-                    setTranslationalVelocity(0.1);
-                }
-                // Front right obstacle ?
-                else if (sonars.hasHit(0) && (sonars.hasHit(23))) {
-                    setRotationalVelocity(Math.PI / 4);
-                    setTranslationalVelocity(0.1);
-                }
-                // left obstacle ?
-                else if (sonars.hasHit(3) || sonars.hasHit(4)) {
-                    setRotationalVelocity(-Math.PI / 8);
-                    setTranslationalVelocity(0.1);
-                }
-                // right obstacle ?
-                else if (sonars.hasHit(21) || sonars.hasHit(20)) {
-                    setRotationalVelocity(Math.PI / 8);
-                    setTranslationalVelocity(0.1);
-                } else if ((getCounter() % 100) == 0) {
-                    setRotationalVelocity(Math.PI / 2 * (0.5 - Math.random()));
-                    setTranslationalVelocity(0.5);
-                }
-            }
-        }
-    }
-
-    public class DynamicEnvironmentElement extends Agent {
-
-        RangeSensorBelt bumpers;
-
-        /**
-         * Constructs an Agent.
-         *
-         * @param pos  start position in 3D world.
-         * @param name name of the agent.
-         */
-        public DynamicEnvironmentElement(Vector3d pos, String name) {
-            super(pos, name);
-            bumpers = RobotFactory.addBumperBeltSensor(this);
-
-        }
-
-        @Override
-        public void initBehavior() {
-            setTranslationalVelocity(1);
-            setColor(new Color3f(Color.blue));
-        }
-
-        @Override
-        public void performBehavior() {
-            if (bumpers.oneHasHit()) {
-                rotateY(Math.PI);
-                resetDevices();
-            }
-        }
-    }
-
     public DynamicEnvironmentSimulation() {
         Wall w1 = new Wall(new Vector3d(10, 0, 0), 20, 1, this);
         w1.rotate90(1);
@@ -113,7 +29,6 @@ public class DynamicEnvironmentSimulation extends Demo {
         add(new DynamicEnvironmentElement(new Vector3d(2, 0, 3), "cherry"));
         add(new DynamicEnvironmentElement(new Vector3d(2, 0, 0), "cherry"));
         add(new DynamicEnvironmentElement(new Vector3d(2, 0, 8), "cherry"));
-        add(new Robot(new Vector3d(0, 0, 0), "avoider"));
-
+        add(new DynamicEnvoronmentRobot(new Vector3d(0, 0, 0), "avoider"));
     }
 }
