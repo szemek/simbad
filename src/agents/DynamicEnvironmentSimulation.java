@@ -34,7 +34,7 @@ public class DynamicEnvironmentSimulation extends Demo {
         //TODO: Check for collision and replace
         for (int i = 0; i < NUMBER_OF_DYNAMIC_OBSTACLES; i++) {
             DynamicEnvironmentElement dynamicElement = new DynamicEnvironmentElement(new Vector3d((int) (Math.random() * 18) - 9, 0,
-                    (int) (Math.random() * 18) - 9), "cherry", 0.5);
+                    (int) (Math.random() * 18) - 9), "cherry", 0.2, Math.random() + 1.0);
             add(dynamicElement);
         }
     }
