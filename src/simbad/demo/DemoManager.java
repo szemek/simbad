@@ -29,14 +29,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 /**
- *  Manages (simply) a list of demonstrations and is used by Simbad main class.
- *  This class is used statically only.
+ * Manages (simply) a list of demonstrations and is used by Simbad main class.
+ * This class is used statically only.
  */
 public class DemoManager {
 
     // available demos classes
     final static String classNames[] = {
-            "simbad.agents.SingleAvoider",
+            "agents.SingleAvoider",
             "simbad.demo.BaseDemo",
             "simbad.demo.BumpersDemo",
             "simbad.demo.SingleAvoiderDemo",
@@ -51,7 +51,9 @@ public class DemoManager {
             "simbad.demo.PushBallsDemo"
     };
 
-    /** Creates a menu corresponding to the demo set. */
+    /**
+     * Creates a menu corresponding to the demo set.
+     */
     public final static JMenu createMenu(ActionListener actionListener) {
         JMenu menu = new JMenu("Examples");
         for (int i = 0; i < classNames.length; i++) {
@@ -63,14 +65,16 @@ public class DemoManager {
         return menu;
     }
 
-    /** Creates a demo corresponding to the menu item. */
-       public static Demo getDemoFromActionEvent(ActionEvent event) {
+    /**
+     * Creates a demo corresponding to the menu item.
+     */
+    public static Demo getDemoFromActionEvent(ActionEvent event) {
         Class cl = null;
-        Demo demo=null;
+        Demo demo = null;
         String demoName = ((JMenuItem) event.getSource()).getText();
         try {
             cl = Class.forName(demoName);
-            demo = (Demo)cl.newInstance();
+            demo = (Demo) cl.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
