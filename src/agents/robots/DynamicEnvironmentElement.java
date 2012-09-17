@@ -16,6 +16,7 @@ import java.awt.*;
 public class DynamicEnvironmentElement extends Agent {
 
     RangeSensorBelt bumpers;
+    double velocity;
 
     /**
      * Constructs an Agent.
@@ -23,23 +24,30 @@ public class DynamicEnvironmentElement extends Agent {
      * @param pos  start position in 3D world.
      * @param name name of the agent.
      */
-    public DynamicEnvironmentElement(Vector3d pos, String name) {
+    public DynamicEnvironmentElement(Vector3d pos, String name, double velocity) {
         super(pos, name);
         bumpers = RobotFactory.addBumperBeltSensor(this);
-
+        this.velocity = velocity;
     }
 
     @Override
     public void initBehavior() {
-        setTranslationalVelocity(1);
-        setColor(new Color3f(Color.blue));
+        setTranslationalVelocity(velocity);
+        rotateY((int) (Math.random() * 3) * Math.PI / 2);
     }
 
     @Override
     public void performBehavior() {
         if (bumpers.oneHasHit()) {
-            rotateY(Math.PI);
+            rotateY((int) (Math.random() * 3) * Math.PI / 2);
+            setTranslationalVelocity(velocity + Math.random() * velocity / 2);
             resetDevices();
         }
+    }
+
+    @Override
+    protected void create3D() {
+        super.create3D();
+        setColor(new Color3f(Color.blue));
     }
 }

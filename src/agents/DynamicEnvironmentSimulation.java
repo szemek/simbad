@@ -11,6 +11,9 @@ import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 
 public class DynamicEnvironmentSimulation extends Demo {
+
+    private final int NUMBER_OF_DYNAMIC_OBSTACLES = 20;
+
     public DynamicEnvironmentSimulation() {
         Wall w1 = new Wall(new Vector3d(10, 0, 0), 20, 1, this);
         w1.rotate90(1);
@@ -26,9 +29,13 @@ public class DynamicEnvironmentSimulation extends Demo {
         add(b1);
         Arch a1 = new Arch(new Vector3d(3, 0, -3), this);
         add(a1);
-        add(new DynamicEnvironmentElement(new Vector3d(2, 0, 3), "cherry"));
-        add(new DynamicEnvironmentElement(new Vector3d(2, 0, 0), "cherry"));
-        add(new DynamicEnvironmentElement(new Vector3d(2, 0, 8), "cherry"));
         add(new DynamicEnvoronmentRobot(new Vector3d(0, 0, 0), "avoider"));
+
+        //TODO: Check for collision and replace
+        for (int i = 0; i < NUMBER_OF_DYNAMIC_OBSTACLES; i++) {
+            DynamicEnvironmentElement dynamicElement = new DynamicEnvironmentElement(new Vector3d((int) (Math.random() * 18) - 9, 0,
+                    (int) (Math.random() * 18) - 9), "cherry", 0.5);
+            add(dynamicElement);
+        }
     }
 }
