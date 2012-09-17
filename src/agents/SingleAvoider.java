@@ -1,4 +1,4 @@
-package simbad.agents;
+package agents;
 
 import simbad.demo.Demo;
 import simbad.sim.*;
@@ -15,15 +15,19 @@ public class SingleAvoider extends Demo {
             super(position, name);
             // Add sensors
             bumpers = RobotFactory.addBumperBeltSensor(this);
-            sonars = RobotFactory.addSonarBeltSensor(this,24);
+            sonars = RobotFactory.addSonarBeltSensor(this, 24);
         }
 
-        /** Initialize Agent's Behavior */
+        /**
+         * Initialize Agent's Behavior
+         */
         public void initBehavior() {
             // nothing particular in this case
         }
 
-        /** Perform one step of Agent's Behavior */
+        /**
+         * Perform one step of Agent's Behavior
+         */
         public void performBehavior() {
 
             if (bumpers.oneHasHit()) {
