@@ -11,11 +11,11 @@ import javax.vecmath.Vector3d;
  * Date: 17.09.2012
  * Time: 11:38
  */
-public class DynamicEnvoronmentRobot extends Agent {
+public class DynamicEnvironmentRobot extends Agent {
 
     RangeSensorBelt sonars, bumpers;
 
-    public DynamicEnvoronmentRobot(Vector3d position, String name) {
+    public DynamicEnvironmentRobot(Vector3d position, String name) {
         super(position, name);
         // Add sensors
         bumpers = RobotFactory.addBumperBeltSensor(this);

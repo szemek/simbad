@@ -1,8 +1,9 @@
 package agents;
 
 import agents.robots.DynamicEnvironmentElement;
-import agents.robots.DynamicEnvoronmentRobot;
+import agents.robots.DynamicEnvironmentRobot;
 import simbad.demo.Demo;
+import simbad.sim.Agent;
 import simbad.sim.Arch;
 import simbad.sim.Box;
 import simbad.sim.Wall;
@@ -13,6 +14,7 @@ import javax.vecmath.Vector3f;
 public class DynamicEnvironmentSimulation extends Demo {
 
     private final int NUMBER_OF_DYNAMIC_OBSTACLES = 20;
+    private final Agent DYNAMIC_ENVIRONMENT_ROBOT = new DynamicEnvironmentRobot(new Vector3d(0, 0, 0), "avoider");
 
     public DynamicEnvironmentSimulation() {
         Wall w1 = new Wall(new Vector3d(10, 0, 0), 20, 1, this);
@@ -29,7 +31,7 @@ public class DynamicEnvironmentSimulation extends Demo {
         add(b1);
         Arch a1 = new Arch(new Vector3d(3, 0, -3), this);
         add(a1);
-        add(new DynamicEnvoronmentRobot(new Vector3d(0, 0, 0), "avoider"));
+        add(DYNAMIC_ENVIRONMENT_ROBOT);
 
         //TODO: Check for collision and replace
         for (int i = 0; i < NUMBER_OF_DYNAMIC_OBSTACLES; i++) {
