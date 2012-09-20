@@ -1,7 +1,7 @@
 package agents;
 
+import agents.robots.CVMRobot;
 import agents.robots.DynamicEnvironmentElement;
-import agents.robots.DynamicEnvironmentRobot;
 import simbad.demo.Demo;
 import simbad.sim.Agent;
 import simbad.sim.Arch;
@@ -14,7 +14,8 @@ import javax.vecmath.Vector3f;
 public class DynamicEnvironmentSimulation extends Demo {
 
     private final int NUMBER_OF_DYNAMIC_OBSTACLES = 20;
-    private final Agent DYNAMIC_ENVIRONMENT_ROBOT = new DynamicEnvironmentRobot(new Vector3d(0, 0, 0), "avoider");
+    //private final Agent DYNAMIC_ENVIRONMENT_ROBOT = new DynamicEnvironmentRobot(new Vector3d(0, 0, 0), "avoider");
+    private final Agent DYNAMIC_ENVIRONMENT_ROBOT = new CVMRobot(new Vector3d(0, 0, 0), "avoider");
 
     public DynamicEnvironmentSimulation() {
         Wall w1 = new Wall(new Vector3d(10, 0, 0), 20, 1, this);
