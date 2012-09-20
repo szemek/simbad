@@ -21,14 +21,16 @@ public class CVMRobot extends Agent {
     private class Sensor {
         public double angle;
         public double measurement;
+        public int number;
 
-        public Sensor(double angle, double measurement) {
+        public Sensor(double angle, double measurement, int number) {
             this.angle = angle;
             this.measurement = measurement;
+            this.number = number;
         }
 
         public Sensor() {
-            this(0, 0);
+            this(0, 0, 0);
         }
     }
 
@@ -61,18 +63,27 @@ public class CVMRobot extends Agent {
         } else {
             for (int i = 0; i < sonars.getNumSensors(); i++) {
                 if (sonars.hasHit(i)) {
-                    if (sonars.getSensorAngle(i) <= minPositiveAngle.angle + (2 * Math.PI / sonars.getNumSensors())) {
+                    if (i <= minPositiveAngle.number + 2) {
                         minPositiveAngle.angle = sonars.getSensorAngle(i) + (2 * Math.PI / sonars.getNumSensors());
                         minPositiveAngle.measurement = sonars.getMeasurement(i);
                     }
-                    if ((sonars.getSensorAngle(i) - 2 * Math.PI) >= minNegativeAngle.angle - (2 * Math.PI / sonars.getNumSensors())) {
-                        minNegativeAngle.angle = sonars.getSensorAngle(i) - (2 * Math.PI / sonars.getNumSensors());
+                    if (i - sonars.getNumSensors() >= minNegativeAngle.number - 2) {
+                        minNegativeAngle.angle = sonars.getSensorAngle(i) - 2 * Math.PI - (2 * Math.PI / sonars.getNumSensors());
                         minNegativeAngle.measurement = sonars.getMeasurement(i);
                     }
                 }
             }
-            minAngle = Math.abs(minNegativeAngle.angle) < Math.abs(minPositiveAngle.angle) ?
-                    minNegativeAngle : minPositiveAngle;
+            if (Math.abs(minNegativeAngle.angle) < Math.abs(minPositiveAngle.angle)) {
+                minAngle = minNegativeAngle;
+            } else {
+                minAngle = minPositiveAngle;
+            }
+            if (minPositiveAngle.angle == 0) {
+                minAngle = minNegativeAngle;
+            } else if (minNegativeAngle.angle == 0) {
+                minAngle = minPositiveAngle;
+            }
+
 
             double nextVel = MAX_VELOCITY;
             double nextAngVel = 0;
