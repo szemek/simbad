@@ -67,23 +67,17 @@ public class CVMRobot extends Agent {
                         minPositiveAngle.angle = sonars.getSensorAngle(i) + (2 * Math.PI / sonars.getNumSensors());
                         minPositiveAngle.measurement = sonars.getMeasurement(i);
                     }
-                    if (i - sonars.getNumSensors() >= minNegativeAngle.number - 2) {
-                        minNegativeAngle.angle = sonars.getSensorAngle(i) - 2 * Math.PI - (2 * Math.PI / sonars.getNumSensors());
+                    if ((i - sonars.getNumSensors()) % sonars.getNumSensors() >= minNegativeAngle.number - 2) {
+                        minNegativeAngle.angle = (sonars.getSensorAngle(i) - 2 * Math.PI - (2 * Math.PI / sonars.getNumSensors())) % (2 * Math.PI);
                         minNegativeAngle.measurement = sonars.getMeasurement(i);
                     }
                 }
             }
-            if (Math.abs(minNegativeAngle.angle) < Math.abs(minPositiveAngle.angle)) {
+            if (Math.abs(minNegativeAngle.angle) >= Math.abs(minPositiveAngle.angle)) {
                 minAngle = minNegativeAngle;
             } else {
                 minAngle = minPositiveAngle;
             }
-            if (minPositiveAngle.angle == 0) {
-                minAngle = minNegativeAngle;
-            } else if (minNegativeAngle.angle == 0) {
-                minAngle = minPositiveAngle;
-            }
-
 
             double nextVel = MAX_VELOCITY;
             double nextAngVel = 0;
@@ -92,8 +86,8 @@ public class CVMRobot extends Agent {
                 double maxHappiness = 0;
 
                 for (double i = 0; i < MAX_VELOCITY; i += MAX_VELOCITY / 10) {
-                    for (double j = 0; j < MAX_ANGULAR_VELOCITY; j += MAX_ANGULAR_VELOCITY / 10) {
-                        double happiness = happinessFunction(i, Math.signum(minAngle.angle) * j, 0.1, 1, 1);
+                    for (double j = -MAX_ANGULAR_VELOCITY; j < MAX_ANGULAR_VELOCITY; j += MAX_ANGULAR_VELOCITY / 10) {
+                        double happiness = happinessFunction(i, Math.signum(minAngle.angle) * j, 0.1, 3, 1);
                         if (happiness > maxHappiness) {
                             maxHappiness = happiness;
                             nextVel = i;
@@ -119,8 +113,8 @@ public class CVMRobot extends Agent {
     }
 
     private double obstacleHappinessFunction(double velocity, double angularVelocity) {
-        double luk = Math.abs(Math.sin(minAngle.angle) / minAngle.measurement);
-        if (2 * minAngle.angle / luk > angularVelocity / velocity) {
+        double angle = Math.abs(Math.sin(minAngle.angle) / minAngle.measurement);
+        if (2 * minAngle.angle / angle > angularVelocity / velocity) {
             return 1;
         } else {
             return 0;

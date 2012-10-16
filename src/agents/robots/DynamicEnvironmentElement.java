@@ -44,10 +44,8 @@ public class DynamicEnvironmentElement extends Agent {
     @Override
     public void performBehavior() {
         if (bumpers.oneHasHit()) {
-//        if (collisionDetected()){
             rotateY((int) (Math.random() * 3) * Math.PI / 2);
             setTranslationalVelocity(velocity + (Math.random() - 0.5) * velocity);
-//            reset();
             resetDevices();
         }
     }
