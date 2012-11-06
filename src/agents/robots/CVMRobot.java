@@ -5,6 +5,7 @@ import simbad.sim.LightSensor;
 import simbad.sim.RangeSensorBelt;
 import simbad.sim.RobotFactory;
 
+import javax.media.j3d.Transform3D;
 import javax.vecmath.Vector3d;
 
 /**
@@ -20,6 +21,8 @@ public class CVMRobot extends Agent {
     Sensor minAngle;
     LightSensor sensorLeft;
     LightSensor sensorRight;
+    LightSensor sensorRearLeft;
+    LightSensor sensorRearRight;
 
     private class Sensor {
         public double angle;
@@ -44,6 +47,28 @@ public class CVMRobot extends Agent {
         sonars = RobotFactory.addSonarBeltSensor(this, 24);
         sensorLeft = RobotFactory.addLightSensorLeft(this);
         sensorRight = RobotFactory.addLightSensorRight(this);
+        sensorRearLeft = addLightSensorRearLeft(this);
+        sensorRearRight = addLightSensorRearRight(this);
+    }
+
+    static public LightSensor addLightSensorRearRight(Agent agent) {
+        Vector3d front = new Vector3d(agent.getRadius() + 0.5, 0, 0);
+        Transform3D t3d = new Transform3D();
+        t3d.rotY((-Math.PI / 4) * 3);
+        Vector3d right = new Vector3d(front);
+        t3d.transform(right);
+        return RobotFactory.addLightSensor(agent, right, (float) (-Math.PI / 4) * 3,
+                "rear_right");
+    }
+
+    static public LightSensor addLightSensorRearLeft(Agent agent) {
+        Vector3d front = new Vector3d(agent.getRadius() + 0.5, 0, 0);
+        Transform3D t3d = new Transform3D();
+        t3d.rotY((Math.PI / 4) * 3);
+        Vector3d right = new Vector3d(front);
+        t3d.transform(right);
+        return RobotFactory.addLightSensor(agent, right, (float) (Math.PI / 4) * 3,
+                "rear_left");
     }
 
     /**
@@ -92,7 +117,7 @@ public class CVMRobot extends Agent {
 
                 for (double i = 0; i < MAX_VELOCITY; i += MAX_VELOCITY / 10) {
                     for (double j = -MAX_ANGULAR_VELOCITY; j < MAX_ANGULAR_VELOCITY; j += MAX_ANGULAR_VELOCITY / 10) {
-                        double happiness = happinessFunction(i, Math.signum(minAngle.angle) * j, 20, 80, 1);
+                        double happiness = happinessFunction(i, Math.signum(minAngle.angle) * j, 0.1, 4, 0.2);
                         if (happiness > maxHappiness) {
                             maxHappiness = happiness;
                             nextVel = i;
@@ -117,11 +142,18 @@ public class CVMRobot extends Agent {
         float llum = sensorLeft.getAverageLuminance();
         float rlum = sensorRight.getAverageLuminance();
         //setRotationalVelocity((llum - rlum) *  Math.PI);
-        double desiredRotationalVelocity = (llum - rlum) * Math.PI;// / 4;
-        if (angularVelocity > desiredRotationalVelocity) {
-            return desiredRotationalVelocity / angularVelocity;
+        double desiredRotationalVelocity = (llum - rlum);// / 4;
+        if (angularVelocity == 0) {
+            return 1 - Math.abs(desiredRotationalVelocity);
+        } else if (desiredRotationalVelocity == 0) {
+            return 1 - Math.abs(angularVelocity / Math.PI);
         } else {
-            return angularVelocity / desiredRotationalVelocity;
+            desiredRotationalVelocity *= Math.PI;
+            if (angularVelocity > desiredRotationalVelocity) {
+                return desiredRotationalVelocity / angularVelocity;
+            } else {
+                return angularVelocity / desiredRotationalVelocity;
+            }
         }
     }
 

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a5f929de-fc48-4e88-9072-74b63c8b2705" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/agents/DynamicEnvironmentSimulation.java" afterPath="$PROJECT_DIR$/src/agents/DynamicEnvironmentSimulation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/agents/robots/CVMRobot.java" afterPath="$PROJECT_DIR$/src/agents/robots/CVMRobot.java" />
     </list>
     <ignored path="simbad.iws" />
@@ -27,21 +26,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/src/agents/robots/CVMRobot.java" line="94" class="agents.robots.CVMRobot" package="agents.robots">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -112,7 +96,7 @@
       <file leaf-file-name="CVMRobot.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/agents/robots/CVMRobot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="27" selection-start="2869" selection-end="2869" vertical-scroll-proportion="0.10344828">
+            <state line="51" column="27" selection-start="1526" selection-end="1526" vertical-scroll-proportion="0.4827586">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -123,7 +107,7 @@
       <file leaf-file-name="RobotFactory.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/simbad/sim/RobotFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="57" selection-start="3154" selection-end="3154" vertical-scroll-proportion="0.0">
+            <state line="176" column="4" selection-start="6407" selection-end="6798" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -606,7 +590,11 @@
       <created>1352216181800</created>
       <updated>1352216181800</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="light search added">
+      <created>1352241338374</created>
+      <updated>1352241338374</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -614,7 +602,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -624,7 +612,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39878234" sideWeight="0.4973822" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.6012176" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IvyIDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32724506" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -676,7 +664,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="parameters chenge" />
+    <option name="LAST_COMMIT_MESSAGE" value="light search added" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -698,6 +686,7 @@
     <MESSAGE value="V2 not working" />
     <MESSAGE value="algorithm fix" />
     <MESSAGE value="parameters chenge" />
+    <MESSAGE value="light search added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -752,11 +741,6 @@
         <state line="25" column="29" selection-start="695" selection-end="776" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/simbad/sim/RobotFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="57" selection-start="3154" selection-end="3154" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/agents/robots/DynamicEnvironmentElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="43" column="4" selection-start="1062" selection-end="1331" vertical-scroll-proportion="0.0" />
@@ -790,9 +774,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/simbad/sim/RobotFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="176" column="4" selection-start="6407" selection-end="6798" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/agents/robots/CVMRobot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="27" selection-start="2869" selection-end="2869" vertical-scroll-proportion="0.10344828">
+        <state line="51" column="27" selection-start="1526" selection-end="1526" vertical-scroll-proportion="0.4827586">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
