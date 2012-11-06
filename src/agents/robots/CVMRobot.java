@@ -12,9 +12,9 @@ import javax.vecmath.Vector3d;
  * Time: 06:05
  */
 public class CVMRobot extends Agent {
-
-    private static final double MAX_VELOCITY = 0.5;
-    private static final double MAX_ANGULAR_VELOCITY = Math.PI;
+    private static final double FACTOR = 1;
+    private static final double MAX_VELOCITY = FACTOR * 0.4;
+    private static final double MAX_ANGULAR_VELOCITY = FACTOR * Math.PI;
     private RangeSensorBelt sonars, bumpers;
     Sensor minAngle;
 
