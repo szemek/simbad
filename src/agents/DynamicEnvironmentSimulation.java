@@ -15,9 +15,16 @@ public class DynamicEnvironmentSimulation extends Demo {
 
     private final int NUMBER_OF_DYNAMIC_OBSTACLES = 20;
     //private final Agent DYNAMIC_ENVIRONMENT_ROBOT = new DynamicEnvironmentRobot(new Vector3d(0, 0, 0), "avoider");
-    private final Agent DYNAMIC_ENVIRONMENT_ROBOT = new CVMRobot(new Vector3d(0, 0, 0), "avoider");
+    private final Agent DYNAMIC_ENVIRONMENT_ROBOT = new CVMRobot(new Vector3d(-9, 0, -9), "avoider");
 
     public DynamicEnvironmentSimulation() {
+        light1IsOn = true;
+        light1SetPosition(9, .7f, 9);
+        light2IsOn = false;
+        ambientLightColor = ligthgray;
+        light1Color = white;
+        light2Color = white;
+
         Wall w1 = new Wall(new Vector3d(10, 0, 0), 20, 1, this);
         w1.rotate90(1);
         add(w1);

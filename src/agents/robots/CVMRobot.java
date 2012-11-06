@@ -1,6 +1,7 @@
 package agents.robots;
 
 import simbad.sim.Agent;
+import simbad.sim.LightSensor;
 import simbad.sim.RangeSensorBelt;
 import simbad.sim.RobotFactory;
 
@@ -17,6 +18,8 @@ public class CVMRobot extends Agent {
     private static final double MAX_ANGULAR_VELOCITY = FACTOR * Math.PI;
     private RangeSensorBelt sonars, bumpers;
     Sensor minAngle;
+    LightSensor sensorLeft;
+    LightSensor sensorRight;
 
     private class Sensor {
         public double angle;
@@ -39,6 +42,8 @@ public class CVMRobot extends Agent {
         // Add sensors
         bumpers = RobotFactory.addBumperBeltSensor(this);
         sonars = RobotFactory.addSonarBeltSensor(this, 24);
+        sensorLeft = RobotFactory.addLightSensorLeft(this);
+        sensorRight = RobotFactory.addLightSensorRight(this);
     }
 
     /**
@@ -55,7 +60,7 @@ public class CVMRobot extends Agent {
 
         Sensor minPositiveAngle = new Sensor();
         Sensor minNegativeAngle = new Sensor();
-
+        if (collisionDetected()) moveToStartPosition();
         if (bumpers.oneHasHit()) {
             setTranslationalVelocity(-0.1);
             setRotationalVelocity(0.1 * Math.random());
@@ -87,7 +92,7 @@ public class CVMRobot extends Agent {
 
                 for (double i = 0; i < MAX_VELOCITY; i += MAX_VELOCITY / 10) {
                     for (double j = -MAX_ANGULAR_VELOCITY; j < MAX_ANGULAR_VELOCITY; j += MAX_ANGULAR_VELOCITY / 10) {
-                        double happiness = happinessFunction(i, Math.signum(minAngle.angle) * j, 0.1, 3, 1);
+                        double happiness = happinessFunction(i, Math.signum(minAngle.angle) * j, 20, 80, 1);
                         if (happiness > maxHappiness) {
                             maxHappiness = happiness;
                             nextVel = i;
@@ -109,7 +114,15 @@ public class CVMRobot extends Agent {
     }
 
     private double aimHappinessFunction(double velocity, double angularVelocity) {
-        return 1;
+        float llum = sensorLeft.getAverageLuminance();
+        float rlum = sensorRight.getAverageLuminance();
+        //setRotationalVelocity((llum - rlum) *  Math.PI);
+        double desiredRotationalVelocity = (llum - rlum) * Math.PI;// / 4;
+        if (angularVelocity > desiredRotationalVelocity) {
+            return desiredRotationalVelocity / angularVelocity;
+        } else {
+            return angularVelocity / desiredRotationalVelocity;
+        }
     }
 
     private double obstacleHappinessFunction(double velocity, double angularVelocity) {
