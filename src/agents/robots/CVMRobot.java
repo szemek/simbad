@@ -117,7 +117,7 @@ public class CVMRobot extends Agent {
 
             for (double i = 0.001; i < MAX_VELOCITY; i += MAX_VELOCITY / 10) {
                 for (double j = -MAX_ANGULAR_VELOCITY; j < MAX_ANGULAR_VELOCITY; j += MAX_ANGULAR_VELOCITY / 10) {
-                    double happiness = happinessFunction(i, j, 0.1, 5, 5.3);
+                    double happiness = happinessFunction(i, j, 0.1, 5, 17);
                     if (happiness > maxHappiness) {
                         maxHappiness = happiness;
                         nextVel = i;
@@ -165,6 +165,7 @@ public class CVMRobot extends Agent {
         } else {
             desiredRotationalVelocity = 0;
         }
+        desiredRotationalVelocity /= 1.5;
         double result = 1;
         if (angularVelocity == 0) {
             result = 1 - Math.abs(desiredRotationalVelocity / Math.PI);
@@ -184,7 +185,7 @@ public class CVMRobot extends Agent {
 
     private double obstacleHappinessFunction(double velocity, double angularVelocity) {
         if (minAngle.angle == 0) {
-            return 1 - Math.abs(angularVelocity / Math.PI);
+            return Math.floor(2 - 2 * Math.abs(angularVelocity / Math.PI));
         } else if (Math.signum(minAngle.angle) != Math.signum(angularVelocity)) {
 
             angularVelocity = Math.signum(minAngle.angle) * angularVelocity;
