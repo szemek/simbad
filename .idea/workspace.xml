@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a5f929de-fc48-4e88-9072-74b63c8b2705" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/agents/DynamicEnvironmentSimulation.java" afterPath="$PROJECT_DIR$/src/agents/DynamicEnvironmentSimulation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/agents/robots/CVMRobot.java" afterPath="$PROJECT_DIR$/src/agents/robots/CVMRobot.java" />
     </list>
     <ignored path="simbad.iws" />
@@ -69,7 +70,7 @@
       <file leaf-file-name="DynamicEnvironmentSimulation.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/agents/DynamicEnvironmentSimulation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="87" selection-start="599" selection-end="599" vertical-scroll-proportion="-4.6153846">
+            <state line="21" column="31" selection-start="717" selection-end="717" vertical-scroll-proportion="-1.1538461">
               <folding />
             </state>
           </provider>
@@ -96,7 +97,7 @@
       <file leaf-file-name="CVMRobot.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/agents/robots/CVMRobot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="27" selection-start="1526" selection-end="1526" vertical-scroll-proportion="0.4827586">
+            <state line="161" column="45" selection-start="6487" selection-end="6487" vertical-scroll-proportion="0.9059561">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -594,7 +595,11 @@
       <created>1352241338374</created>
       <updated>1352241338374</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fixed">
+      <created>1352243533487</created>
+      <updated>1352243533487</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -664,7 +669,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="light search added" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -687,6 +692,7 @@
     <MESSAGE value="algorithm fix" />
     <MESSAGE value="parameters chenge" />
     <MESSAGE value="light search added" />
+    <MESSAGE value="fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -696,11 +702,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/lib/j3dcore.jar!/javax/media/j3d/Shape3D.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="0" selection-start="3384" selection-end="3384" vertical-scroll-proportion="0.77272725" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/simbad/sim/Agent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="191" column="20" selection-start="6270" selection-end="6271" vertical-scroll-proportion="0.30944625" />
@@ -767,13 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/agents/DynamicEnvironmentSimulation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="87" selection-start="599" selection-end="599" vertical-scroll-proportion="-4.6153846">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/simbad/sim/RobotFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="176" column="4" selection-start="6407" selection-end="6798" vertical-scroll-proportion="0.0">
@@ -781,9 +775,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/agents/DynamicEnvironmentSimulation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="31" selection-start="717" selection-end="717" vertical-scroll-proportion="-1.1538461">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar!/sun/java2d/loops/DrawGlyphListAA.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="23" selection-start="944" selection-end="944" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/agents/robots/CVMRobot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="27" selection-start="1526" selection-end="1526" vertical-scroll-proportion="0.4827586">
+        <state line="161" column="45" selection-start="6487" selection-end="6487" vertical-scroll-proportion="0.9059561">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

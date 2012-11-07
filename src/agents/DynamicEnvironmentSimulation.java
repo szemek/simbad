@@ -13,13 +13,13 @@ import javax.vecmath.Vector3f;
 
 public class DynamicEnvironmentSimulation extends Demo {
 
-    private final int NUMBER_OF_DYNAMIC_OBSTACLES = 20;
+    private final int NUMBER_OF_DYNAMIC_OBSTACLES = 10;
     //private final Agent DYNAMIC_ENVIRONMENT_ROBOT = new DynamicEnvironmentRobot(new Vector3d(0, 0, 0), "avoider");
     private final Agent DYNAMIC_ENVIRONMENT_ROBOT = new CVMRobot(new Vector3d(-9, 0, -9), "avoider");
 
     public DynamicEnvironmentSimulation() {
         light1IsOn = true;
-        light1SetPosition(9, .7f, 9);
+        light1SetPosition(8, .6f, 8);
         light2IsOn = false;
         ambientLightColor = ligthgray;
         light1Color = white;

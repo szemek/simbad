@@ -112,20 +112,20 @@ public class CVMRobot extends Agent {
             double nextVel = MAX_VELOCITY;
             double nextAngVel = 0;
 
-            if (minAngle.angle != 0) {
-                double maxHappiness = 0;
+            //if (minAngle.angle != 0) {
+            double maxHappiness = 0;
 
-                for (double i = 0; i < MAX_VELOCITY; i += MAX_VELOCITY / 10) {
-                    for (double j = -MAX_ANGULAR_VELOCITY; j < MAX_ANGULAR_VELOCITY; j += MAX_ANGULAR_VELOCITY / 10) {
-                        double happiness = happinessFunction(i, Math.signum(minAngle.angle) * j, 0.1, 4, 0.2);
-                        if (happiness > maxHappiness) {
-                            maxHappiness = happiness;
-                            nextVel = i;
-                            nextAngVel = j;
-                        }
+            for (double i = 0.001; i < MAX_VELOCITY; i += MAX_VELOCITY / 10) {
+                for (double j = -MAX_ANGULAR_VELOCITY; j < MAX_ANGULAR_VELOCITY; j += MAX_ANGULAR_VELOCITY / 10) {
+                    double happiness = happinessFunction(i, j, 0.1, 5, 5.3);
+                    if (happiness > maxHappiness) {
+                        maxHappiness = happiness;
+                        nextVel = i;
+                        nextAngVel = j;
                     }
                 }
             }
+            //}
 
             setRotationalVelocity(nextAngVel);
             setTranslationalVelocity(nextVel);
@@ -141,26 +141,60 @@ public class CVMRobot extends Agent {
     private double aimHappinessFunction(double velocity, double angularVelocity) {
         float llum = sensorLeft.getAverageLuminance();
         float rlum = sensorRight.getAverageLuminance();
+        float rllum = sensorRearLeft.getAverageLuminance();
+        float rrlum = sensorRearRight.getAverageLuminance();
+        if (Math.abs(rrlum - rlum) + Math.abs(rrlum - llum) + Math.abs(rrlum - rllum) < 0.1) {
+            moveToStartPosition();
+        }
         //setRotationalVelocity((llum - rlum) *  Math.PI);
-        double desiredRotationalVelocity = (llum - rlum);// / 4;
-        if (angularVelocity == 0) {
-            return 1 - Math.abs(desiredRotationalVelocity);
-        } else if (desiredRotationalVelocity == 0) {
-            return 1 - Math.abs(angularVelocity / Math.PI);
-        } else {
-            desiredRotationalVelocity *= Math.PI;
-            if (angularVelocity > desiredRotationalVelocity) {
-                return desiredRotationalVelocity / angularVelocity;
+        double desiredRotationalVelocity;
+        if ((llum > rllum && llum > rrlum && rlum > rrlum && rlum > rllum)) { //front
+            desiredRotationalVelocity = (llum - rlum) * Math.PI / 4;
+        } else if (llum > rlum && llum > rrlum && rllum > rlum && rllum > rrlum) { //left
+            desiredRotationalVelocity = (rllum - llum) * Math.PI / 4 + Math.PI / 2;
+        } else if (rlum > llum && rlum > rllum && rrlum > llum && rrlum > rllum) { //right
+            desiredRotationalVelocity = (rlum - rrlum) * Math.PI / 4 - Math.PI / 2;
+        } else if (rrlum > rlum && rrlum > llum && rllum > llum && rllum > rlum) { //back
+            desiredRotationalVelocity = (rllum - rrlum) * Math.PI / 4;
+            if (rrlum > rllum) {
+                desiredRotationalVelocity = Math.PI - desiredRotationalVelocity;
             } else {
-                return angularVelocity / desiredRotationalVelocity;
+                desiredRotationalVelocity = -Math.PI - desiredRotationalVelocity;
             }
+
+        } else {
+            desiredRotationalVelocity = 0;
+        }
+        double result = 1;
+        if (angularVelocity == 0) {
+            result = 1 - Math.abs(desiredRotationalVelocity / Math.PI);
+        } else if (desiredRotationalVelocity == 0) {
+            result = 1 - Math.abs(angularVelocity / Math.PI);
+        } else if (Math.abs(angularVelocity) > Math.abs(desiredRotationalVelocity)) {
+            result = desiredRotationalVelocity / angularVelocity;
+        } else {
+            result = angularVelocity / desiredRotationalVelocity;
+        }
+        if (result > 0) {
+            return result;
+        } else {
+            return 0;
         }
     }
 
     private double obstacleHappinessFunction(double velocity, double angularVelocity) {
-        double angle = Math.abs(Math.sin(minAngle.angle) / minAngle.measurement);
-        if (2 * minAngle.angle / angle > angularVelocity / velocity) {
-            return 1;
+        if (minAngle.angle == 0) {
+            return 1 - Math.abs(angularVelocity / Math.PI);
+        } else if (Math.signum(minAngle.angle) != Math.signum(angularVelocity)) {
+
+            angularVelocity = Math.signum(minAngle.angle) * angularVelocity;
+            double angle = Math.abs(Math.sin(minAngle.angle) / minAngle.measurement);
+
+            if (2 * minAngle.angle / angle > angularVelocity / velocity) {
+                return 1 - (angularVelocity / velocity) / (2 * minAngle.angle / angle);
+            } else {
+                return 0;
+            }
         } else {
             return 0;
         }
