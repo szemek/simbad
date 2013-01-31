@@ -1,5 +1,7 @@
 package agents.robots;
 
+import org.joda.time.DateTime;
+import org.joda.time.Duration;
 import simbad.sim.Agent;
 import simbad.sim.LightSensor;
 import simbad.sim.RangeSensorBelt;
@@ -7,6 +9,8 @@ import simbad.sim.RobotFactory;
 
 import javax.media.j3d.Transform3D;
 import javax.vecmath.Vector3d;
+
+import static org.joda.time.DateTime.*;
 
 /**
  * User: Marek Ł
@@ -23,6 +27,9 @@ public class CVMRobot extends Agent {
     LightSensor sensorRight;
     LightSensor sensorRearLeft;
     LightSensor sensorRearRight;
+
+    Duration duration;
+    DateTime start;
 
     private class Sensor {
         public double angle;
