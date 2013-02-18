@@ -8,7 +8,11 @@ import simbad.sim.RangeSensorBelt;
 import simbad.sim.RobotFactory;
 
 import javax.media.j3d.Transform3D;
+import javax.vecmath.Point3d;
 import javax.vecmath.Vector3d;
+
+import java.io.FileWriter;
+import java.io.IOException;
 
 import static org.joda.time.DateTime.*;
 
@@ -92,7 +96,26 @@ public class CVMRobot extends Agent {
 
         Sensor minPositiveAngle = new Sensor();
         Sensor minNegativeAngle = new Sensor();
-        if (collisionDetected()) moveToStartPosition();
+
+        Point3d coord = new Point3d();
+        getCoords(coord);
+        double distance = Math.sqrt(Math.pow(coord.getX() - 8, 2) + Math.pow(coord.getZ() - 8, 2));
+
+        if(distance < (double) getRadius()) {
+            try
+            {
+                String filename= "logs.txt";
+                FileWriter fw = new FileWriter(filename, true);
+                DateTime dt = new DateTime();
+                fw.write(dt.toString() + "\n");
+                fw.close();
+            }
+            catch(IOException ioe)
+            {
+                System.err.println("IOException: " + ioe.getMessage());
+            }
+            moveToStartPosition();
+        }
         if (bumpers.oneHasHit()) {
             setTranslationalVelocity(-0.1);
             setRotationalVelocity(0.1 * Math.random());

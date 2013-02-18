@@ -39,13 +39,13 @@ public class DynamicEnvironmentSimulation extends Demo {
         add(b1);
         Arch a1 = new Arch(new Vector3d(3, 0, -3), this);
         add(a1);
+        add(new Box(new Vector3d(-5, 0, 5), new Vector3f(1, 1, 2), this));
+        add(new Box(new Vector3d(0, 0, 0), new Vector3f(1, 1, 2), this));
+        add(new Box(new Vector3d(5, 0, 5), new Vector3f(2, 1, 2), this));
+        add(new Box(new Vector3d(5, 0, 9), new Vector3f(1, 1, 1), this));
+        add(new Box(new Vector3d(9, 0, 5), new Vector3f(1, 1, 1), this));
+        add(new Box(new Vector3d(7, 0, -6), new Vector3f(2, 1, 2), this));
         add(DYNAMIC_ENVIRONMENT_ROBOT);
 
-        //TODO: Check for collision and replace
-        for (int i = 0; i < NUMBER_OF_DYNAMIC_OBSTACLES; i++) {
-            DynamicEnvironmentElement dynamicElement = new DynamicEnvironmentElement(new Vector3d((int) (Math.random() * 18) - 9, 0,
-                    (int) (Math.random() * 18) - 9), "cherry", 0.2, Math.random() + 1.0);
-            add(dynamicElement);
-        }
     }
 }
